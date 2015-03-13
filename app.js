@@ -19,11 +19,11 @@
 			'click #embed_link':'embedLinks',
 			'click #remove_images':'removeImages',
 			'click #preview_item': 'previewItem',
-			
+
 			// working with Remote Content
 			'click #getExternal': 'getExternal',
 			'click #addExternal': 'addExternalToLibrary',
-			
+
 			// Growler notifications for external requests
 			'putField.done': function() {
 				services.notify('Item(s) Successfully Added.');
@@ -117,7 +117,7 @@
 							data_url: att[i].url
 						});
 					}
-					else {return}; 
+					else {return};
 				}
 				this.switchTo("get", {imageList: attachmentList});
 	    },
@@ -130,7 +130,7 @@
 				this.renderLibrary();
 			});
 	    },
-	    
+
 		renderLibrary: function() {
 			if(self.library == null) {
 				this.switchTo("library", {imageList: "<li class=\"imgbox\"><br>Nothing Here Yet!</li>"});
@@ -242,7 +242,7 @@
 
 		// will remove the thumbnail URL from user field based on user selection
 		// this does not work with new data model.
-		// currently we are removing based on matching a URL string. 
+		// currently we are removing based on matching a URL string.
 		// this needs to account for a different data structure, using the index
 		removeImages: function(data){
 			self.$(".highlight").each(function(i, val) {
@@ -265,7 +265,7 @@
 			current_text += put_data;
 			this.comment().text(current_text);
 		},
-		
+
 		embedLinks: function(data){
 			put_data = '';
 			self.$(".highlight").each(function(i, val) {
@@ -273,21 +273,21 @@
 			});
 			current_text = this.comment().text();
 			current_text += put_data;
-			this.comment().text(current_text);	
+			this.comment().text(current_text);
 		},
-		
+
 		// show preview of selected Text File using Google Docs API in a modal Iframe
 		previewItem: function(data, target){
 			var log = self.$(".highlight > div > img").attr('data-contenturl');
 			var url = "http://docs.google.com/viewer?url="+log+"&embedded=true";
 			this.$('#modalIframe').attr('src', url);
-			this.$('#myModal').modal('show');			
+			this.$('#myModal').modal('show');
 		},
-		
+
 		getExternal: function() {
 			this.switchTo("external");
 		},
-		
+
 		//  This allows the end-user to add images or files hosted externally to be stored
 		//  inside of their library
 		// how should we determine if this is image or text?
